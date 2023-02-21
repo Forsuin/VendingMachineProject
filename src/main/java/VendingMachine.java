@@ -1,5 +1,4 @@
-import java.time.zone.ZoneRulesException;
-import java.util.Stack;
+
 
 public class VendingMachine {
     private CoinPool coins;
@@ -39,6 +38,11 @@ public class VendingMachine {
     }
 
     public void logIn(String password) throws IncorrectPasswordException {
+        if(state == VendingMachineState.Operator) {
+            System.out.println("Already logged in");
+            return;
+        }
+
         if(!this.password.equals(password)){
             throw new IncorrectPasswordException();
         }
@@ -46,7 +50,8 @@ public class VendingMachine {
         state = VendingMachineState.Operator;
     }
 
-    public void logOff(){
+    public void logOff() throws IncorrectStateException {
+        checkMachineState();
         state = VendingMachineState.Customer;
     }
 
@@ -54,12 +59,25 @@ public class VendingMachine {
         items.addItems(item, amount);
     }
 
-    public void removeCoins(Coin coin, int amount){
+    public void removeCoins(Coin coin, int amount) throws IncorrectStateException {
+        checkMachineState();
         coins.removeCoins(coin, amount);
     }
 
-    public int getNumCoins(Coin coin){
+    public int getNumCoins(Coin coin) throws IncorrectStateException {
+        checkMachineState();
         return coins.getNumCoins(coin);
+    }
+
+    public void setItemPrice(Item item, double price) throws IncorrectStateException {
+        checkMachineState();
+        items.setItemPrice(item, price);
+    }
+
+    private void checkMachineState() throws IncorrectStateException {
+        if(state != VendingMachineState.Operator){
+            throw new IncorrectStateException();
+        }
     }
 
     private void checkPrice(Item item) throws InsufficientCoinsException {

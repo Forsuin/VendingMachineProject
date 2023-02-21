@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 
 public class Inventory {
     Map<Item, Integer> items = new HashMap<>(Map.of(
+            //Item(Name, price), quantity
             new Item("Mountain Dew", 1.75), 10,
             new Item("Monster", 3.00), 10,
             new Item("Water", 2.00), 10,
@@ -41,5 +42,10 @@ public class Inventory {
         int newAMount = items.get(item) + amount;
 
         items.put(item, Math.max(newAMount, 0));
+    }
+
+    public void setItemPrice(Item item, double price){
+
+        items.put(new Item(item.getName(), price), items.remove(item));
     }
 }
