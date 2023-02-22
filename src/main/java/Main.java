@@ -4,21 +4,69 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //VendingMachine vendingMachine = new VendingMachine();
+        VendingMachine vendingMachine = new VendingMachine();
         Scanner scanner = new Scanner(System.in);
         boolean run = true;
 
-       // System.out.println(vendingMachine.showInventory());
+        System.out.println(vendingMachine.showInventory());
+
 
         String input;
         while(run){
             input = scanner.nextLine();
 
             if(!isValidInput(input)){
-                System.out.println("Command not found");
+                System.out.println("Invalid command");
+                continue;
             }
 
+            String[] splitInput = input.split(" ");
+            String[] lowercaseInput = {splitInput[0].toLowerCase(), ""};
 
+            if(splitInput.length == 1){
+                //can only be "help"/"h" since isValidInput() has already verified input
+                showHelp();
+            }
+            else {
+                lowercaseInput[1] = splitInput[1].toLowerCase();
+
+                switch (lowercaseInput[0]){
+                    case "i", "insert" -> {
+                        Coin coin = Coin.valueOf(lowercaseInput[1]);
+                        vendingMachine.insertCoin(coin);
+                    }
+                    case "b", "buy" -> {
+                        if(!vendingMachine.isValidSelection(Integer.valueOf(lowercaseInput[1]))){
+                            System.out.println("Invalid selecetion input");
+                        }
+                        else{
+                            vendingMachine.buy(lowercaseInput[1]);
+                        }
+                    }
+                    case "s", "show" -> {
+                        switch (lowercaseInput[1]){
+                            case "i", "inv", "inventory" -> {
+                                System.out.println(vendingMachine.inventoryToString());
+                            }
+                            case "h", "help" -> {
+                                showHelp();
+                            }
+                        }
+                    }
+                    case "l", "login" -> {
+                        if(!vendingMachine.checkPassword(splitInput[1])){
+                            System.out.println("Incorrect password");
+                        }
+                        else {
+                            vendingMachine.login();
+                        }
+                    }
+                    case "q", "quit" -> {
+                        run = false;
+                    }
+
+                }
+            }
 
         }
     }
@@ -31,18 +79,23 @@ public class Main {
         );
 
         if(inputs.length == 1){
-            return inputs[0].equals("help") || inputs[0].equals("h");
+            if(inputs[0].equals("help") || inputs[0].equals("h")){
+                return true;
+            } else if (inputs[0].equals("login") || inputs[0].equals("l")) {
+                System.out.println("login missing argument: \"login [password]\"");
+                return false;
+            }
         }
         else {
-            switch (inputs[0]) {
+            switch (inputs[0].toLowerCase()) {
                 case "i", "insert" -> {
-                    return validCoins.contains(inputs[1]);
+                    return validCoins.contains(inputs[1].toLowerCase());
                 }
-                case "b", "buy" -> {
+                case "b", "buy", "q", "quit", "l", "login" -> {
                     return true;
                 }
                 case "s", "show" -> {
-                    switch (inputs[1]) {
+                    switch (inputs[1].toLowerCase()) {
                         case "inventory", "inv", "i", "help", "h" -> {
                             return true;
                         }
@@ -54,5 +107,9 @@ public class Main {
                 }
             }
         }
+    }
+
+    private static void showHelp(){
+        System.out.println("Show help");
     }
 }
