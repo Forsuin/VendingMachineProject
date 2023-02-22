@@ -36,7 +36,7 @@ public class Main {
                         vendingMachine.insertCoin(coin);
                     }
                     case "b", "buy" -> {
-                        if(!vendingMachine.isValidSelection(Integer.valueOf(lowercaseInput[1]))){
+                        if(!vendingMachine.isValidSelection(Integer.parseInt(lowercaseInput[1]))){
                             System.out.println("Invalid selecetion input");
                         }
                         else{
@@ -46,20 +46,23 @@ public class Main {
                     case "s", "show" -> {
                         switch (lowercaseInput[1]){
                             case "i", "inv", "inventory" -> {
-                                System.out.println(vendingMachine.inventoryToString());
+                                System.out.println(vendingMachine.showInventory());
                             }
                             case "h", "help" -> {
                                 showHelp();
                             }
                         }
                     }
-                    case "l", "login" -> {
+                    case "login" -> {
                         if(!vendingMachine.checkPassword(splitInput[1])){
                             System.out.println("Incorrect password");
                         }
                         else {
                             vendingMachine.login();
                         }
+                    }
+                    case "exit", "logoff" -> {
+                        vendingMachine.logoff();
                     }
                     case "q", "quit" -> {
                         run = false;
@@ -79,11 +82,14 @@ public class Main {
         );
 
         if(inputs.length == 1){
-            if(inputs[0].equals("help") || inputs[0].equals("h")){
-                return true;
-            } else if (inputs[0].equals("login") || inputs[0].equals("l")) {
-                System.out.println("login missing argument: \"login [password]\"");
-                return false;
+            switch (inputs[0]){
+                case "h", "help", "logoff", "exit" -> {
+                    return true;
+                }
+                case "login" -> {
+                    System.out.println("login missing argument: \"login [password]\"");
+                    return false;
+                }
             }
         }
         else {
@@ -107,6 +113,8 @@ public class Main {
                 }
             }
         }
+        //should be unreachable, but here to make compiler happy
+        return false;
     }
 
     private static void showHelp(){
