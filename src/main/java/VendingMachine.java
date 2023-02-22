@@ -8,15 +8,15 @@ public class VendingMachine {
         StringBuilder output = new StringBuilder();
         int i = 1;
 
-        for (Item item : inventory) {
-            output.append(String.format("%-10s %-4.2f", item.getName(), item.getPrice()));
+        for (ItemInfo info : inventory) {
+            output.append(String.format("%-10s %-4.2f", info.getItem().getName(), info.getPrice()));
         }
 
         return output.toString();
     }
 
     public void buy(String itemID){
-
+        inventory.removeItem(itemID);
     }
 
     public boolean checkPassword(String input){
@@ -36,9 +36,7 @@ public class VendingMachine {
     }
 
     public boolean isValidSelection(int index){
-        //0 - 10?
-        //A - J?
-        return true;
+        return 0 <= index && index <= inventory.getNumItems();
     }
 
 

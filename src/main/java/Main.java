@@ -12,10 +12,10 @@ public class Main {
 
 
         String input;
-        while(run){
+        while (run) {
             input = scanner.nextLine();
 
-            if(!isValidInput(input)){
+            if (!isValidInput(input)) {
                 System.out.println("Invalid command");
                 continue;
             }
@@ -23,28 +23,26 @@ public class Main {
             String[] splitInput = input.split(" ");
             String[] lowercaseInput = {splitInput[0].toLowerCase(), ""};
 
-            if(splitInput.length == 1){
+            if (splitInput.length == 1) {
                 //can only be "help"/"h" since isValidInput() has already verified input
                 showHelp();
-            }
-            else {
+            } else {
                 lowercaseInput[1] = splitInput[1].toLowerCase();
 
-                switch (lowercaseInput[0]){
+                switch (lowercaseInput[0]) {
                     case "i", "insert" -> {
                         Coin coin = Coin.valueOf(lowercaseInput[1]);
                         vendingMachine.insertCoin(coin);
                     }
                     case "b", "buy" -> {
-                        if(!vendingMachine.isValidSelection(Integer.parseInt(lowercaseInput[1]))){
+                        if (!vendingMachine.isValidSelection(Integer.parseInt(lowercaseInput[1]))) {
                             System.out.println("Invalid selecetion input");
-                        }
-                        else{
+                        } else {
                             vendingMachine.buy(lowercaseInput[1]);
                         }
                     }
                     case "s", "show" -> {
-                        switch (lowercaseInput[1]){
+                        switch (lowercaseInput[1]) {
                             case "i", "inv", "inventory" -> {
                                 System.out.println(vendingMachine.showInventory());
                             }
@@ -54,10 +52,9 @@ public class Main {
                         }
                     }
                     case "login" -> {
-                        if(!vendingMachine.checkPassword(splitInput[1])){
+                        if (!vendingMachine.checkPassword(splitInput[1])) {
                             System.out.println("Incorrect password");
-                        }
-                        else {
+                        } else {
                             vendingMachine.login();
                         }
                     }
@@ -74,15 +71,13 @@ public class Main {
         }
     }
 
-    private static boolean isValidInput(String input){
+    private static boolean isValidInput(String input) {
         String[] inputs = input.split(" ");
 
-        ArrayList<String> validCoins = new ArrayList<>(
-                Arrays.asList("penny", "p", "nickel", "n", "dime", "d", "quarter", "q")
-        );
+        ArrayList<String> validCoins = new ArrayList<>(Arrays.asList("penny", "p", "nickel", "n", "dime", "d", "quarter", "q"));
 
-        if(inputs.length == 1){
-            switch (inputs[0]){
+        if (inputs.length == 1) {
+            switch (inputs[0]) {
                 case "h", "help", "logoff", "exit" -> {
                     return true;
                 }
@@ -91,8 +86,7 @@ public class Main {
                     return false;
                 }
             }
-        }
-        else {
+        } else {
             switch (inputs[0].toLowerCase()) {
                 case "i", "insert" -> {
                     return validCoins.contains(inputs[1].toLowerCase());
@@ -105,7 +99,9 @@ public class Main {
                         case "inventory", "inv", "i", "help", "h" -> {
                             return true;
                         }
-                        default -> {return false;}
+                        default -> {
+                            return false;
+                        }
                     }
                 }
                 default -> {
@@ -117,7 +113,7 @@ public class Main {
         return false;
     }
 
-    private static void showHelp(){
+    private static void showHelp() {
         System.out.println("Show help");
     }
 }
