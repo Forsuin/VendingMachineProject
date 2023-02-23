@@ -4,14 +4,19 @@ import java.util.Map;
 public class CoinPool {
     Map<Coin, Integer> coins = new EnumMap<>(Coin.class);
 
-    CoinPool(){
+    CoinPool() {
         coins.put(Coin.PENNY, 10);
         coins.put(Coin.NICKEL, 10);
         coins.put(Coin.DIME, 10);
         coins.put(Coin.QUARTER, 10);
     }
 
-    public void add(Coin coin){
+    public void add(Coin coin) {
         coins.put(coin, coins.get(coin) + 1);
     }
+
+    public int getNumCoin(Coin coin) {
+        return coins.get(coin);
+    }
+
 }

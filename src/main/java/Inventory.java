@@ -5,32 +5,36 @@ public class Inventory implements Iterable<ItemInfo> {
     private HashMap<Integer, ItemInfo> items;
 
 
-    Inventory(){
+    Inventory() {
         items = new HashMap<>();
     }
 
-    public void stockItem(String itemID){
+    public void stockItem(String itemID) {
         getInfo(itemID).addItem();
     }
 
-    public void removeItem(String itemID){
+    public void removeItem(String itemID) {
         getInfo(itemID).removeItem();
     }
 
-    public int getQuantity(String itemID){
+    public int getQuantity(String itemID) {
         return getInfo(itemID).getQuantity();
     }
 
-    public double getPrice(String itemID){
+    public double getPrice(String itemID) {
         return getInfo(itemID).getPrice();
     }
 
-    public void setPrice(String itemID, double price){
+    public void setPrice(String itemID, double price) {
         getInfo(itemID).setPrice(price);
     }
 
-    public int getNumItems(){
+    public int getNumItems() {
         return items.size();
+    }
+
+    public String getName(String itemID) {
+        return getInfo(itemID).getItem().name();
     }
 
     //So for-each loops can work
@@ -39,9 +43,7 @@ public class Inventory implements Iterable<ItemInfo> {
         return items.values().iterator();
     }
 
-    private ItemInfo getInfo(String itemID){
+    private ItemInfo getInfo(String itemID) {
         return items.get(Integer.parseInt(itemID));
     }
-
-
 }

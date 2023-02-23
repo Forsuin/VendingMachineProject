@@ -4,9 +4,16 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        VendingMachine vendingMachine = new VendingMachine();
         Scanner scanner = new Scanner(System.in);
         boolean run = true;
+
+        System.out.print("Enter a password for the vending machine: ");
+
+        String password = scanner.nextLine();
+        System.out.printf("Your password will be: %s", password);
+
+        VendingMachine vendingMachine = new VendingMachine(password);
+
 
         System.out.println(vendingMachine.showInventory());
 
@@ -24,8 +31,14 @@ public class Main {
             String[] lowercaseInput = {splitInput[0].toLowerCase(), ""};
 
             if (splitInput.length == 1) {
-                //can only be "help"/"h" since isValidInput() has already verified input
-                showHelp();
+                switch (lowercaseInput[0]) {
+                    case "h", "help" -> {
+                        showHelp();
+                    }
+                    case "logoff", "exit" -> {
+                        vendingMachine.logoff();
+                    }
+                }
             } else {
                 lowercaseInput[1] = splitInput[1].toLowerCase();
 
@@ -35,7 +48,8 @@ public class Main {
                         vendingMachine.insertCoin(coin);
                     }
                     case "b", "buy" -> {
-                        if (!vendingMachine.isValidSelection(Integer.parseInt(lowercaseInput[1]))) {
+                        if (!vendingMachine.isValidSelection(
+                                Integer.parseInt(lowercaseInput[1]))) {
                             System.out.println("Invalid selecetion input");
                         } else {
                             vendingMachine.buy(lowercaseInput[1]);
@@ -44,7 +58,8 @@ public class Main {
                     case "s", "show" -> {
                         switch (lowercaseInput[1]) {
                             case "i", "inv", "inventory" -> {
-                                System.out.println(vendingMachine.showInventory());
+                                System.out.println(
+                                        vendingMachine.showInventory());
                             }
                             case "h", "help" -> {
                                 showHelp();
@@ -74,7 +89,9 @@ public class Main {
     private static boolean isValidInput(String input) {
         String[] inputs = input.split(" ");
 
-        ArrayList<String> validCoins = new ArrayList<>(Arrays.asList("penny", "p", "nickel", "n", "dime", "d", "quarter", "q"));
+        ArrayList<String> validCoins = new ArrayList<>(
+                Arrays.asList("penny", "p", "nickel", "n", "dime", "d",
+                        "quarter", "q"));
 
         if (inputs.length == 1) {
             switch (inputs[0]) {
@@ -82,7 +99,8 @@ public class Main {
                     return true;
                 }
                 case "login" -> {
-                    System.out.println("login missing argument: \"login [password]\"");
+                    System.out.println(
+                            "login missing argument: \"login [password]\"");
                     return false;
                 }
             }

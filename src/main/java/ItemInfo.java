@@ -1,10 +1,10 @@
 public class ItemInfo {
-    private Item item;
+    private final Item item;
     private double price;
     private int quantity;
 
 
-    ItemInfo(Item item, double price, int quantity){
+    ItemInfo(Item item, double price, int quantity) {
         this.item = item;
         this.price = price;
         this.quantity = quantity;
@@ -30,7 +30,7 @@ public class ItemInfo {
     public void addItem() {
         quantity++;
 
-        if(quantity > 10){
+        if (quantity > 10) {
             quantity = 10;
         }
     }
@@ -38,7 +38,7 @@ public class ItemInfo {
     public void removeItem() {
         quantity--;
 
-        if(quantity < 0){
+        if (quantity < 0) {
             quantity = 0;
         }
     }
