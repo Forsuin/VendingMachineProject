@@ -4,12 +4,11 @@ public class ItemInfo {
     private int quantity;
 
 
-    ItemInfo(Item item, double price, int quantity) {
-        this.item = item;
+    ItemInfo(String name, double price){
+        this.item = new Item(name);
         this.price = price;
-        this.quantity = quantity;
+        this.quantity = 10;
     }
-
 
     public double getPrice() {
         return price;
@@ -32,6 +31,7 @@ public class ItemInfo {
 
         if (quantity > 10) {
             quantity = 10;
+            System.out.println("The machine can't hold anymore of this item");
         }
     }
 
