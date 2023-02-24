@@ -2,11 +2,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class Inventory implements Iterable<ItemInfo> {
-    private HashMap<Integer, ItemInfo> items;
+    private final HashMap<Integer, ItemInfo> items;
 
 
     Inventory() {
         items = new HashMap<>();
+    }
+
+    public void addItem(ItemInfo item, Integer ID) {
+        items.put(ID, item);
     }
 
     public void stockItem(String itemID) {
@@ -19,6 +23,15 @@ public class Inventory implements Iterable<ItemInfo> {
 
     public int getQuantity(String itemID) {
         return getInfo(itemID).getQuantity();
+    }
+
+    public Integer getID(String name) {
+        for (var entry : items.entrySet()) {
+            if (entry.getValue().getItem().name().equals(name)) {
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 
     public double getPrice(String itemID) {
