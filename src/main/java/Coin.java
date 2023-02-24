@@ -19,4 +19,26 @@ public enum Coin {
     public double getValue() {
         return value;
     }
+
+    public static Coin fromString(String name) {
+        try {
+            return Coin.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            switch (name) {
+                case "q" -> {
+                    return Coin.valueOf("QUARTER");
+                }
+                case "d" -> {
+                    return Coin.valueOf("DIME");
+                }
+                case "n" -> {
+                    return Coin.valueOf("NICKEL");
+                }
+                case "p" -> {
+                    return Coin.valueOf("PENNY");
+                }
+                default -> throw new IllegalArgumentException();
+            }
+        }
+    }
 }
