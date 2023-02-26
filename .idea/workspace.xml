@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18e3d53a-3a1b-4c60-b2f2-cad884bdcc42" name="Changes" comment="restart for not shit design">
-      <change afterPath="$PROJECT_DIR$/src/main/java/VendingMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
+    <list default="true" id="18e3d53a-3a1b-4c60-b2f2-cad884bdcc42" name="Changes" comment="Updated error handling and inventory initialization">
+      <change afterPath="$PROJECT_DIR$/src/main/java/VendingMachineDriver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/VendingMachineIO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CoinPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CoinPool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VendingMachine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +20,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Record" />
         <option value="JUnit5 Test Class" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -58,7 +57,6 @@
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
@@ -68,10 +66,10 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -110,6 +108,14 @@
       <workItem from="1676995930059" duration="2471000" />
       <workItem from="1677029403508" duration="85000" />
       <workItem from="1677075513952" duration="1618000" />
+      <workItem from="1677099843302" duration="780000" />
+      <workItem from="1677106593322" duration="7334000" />
+      <workItem from="1677179435237" duration="3140000" />
+      <workItem from="1677196152725" duration="4058000" />
+      <workItem from="1677247505905" duration="18000" />
+      <workItem from="1677357712535" duration="1000" />
+      <workItem from="1677361973623" duration="10000" />
+      <workItem from="1677376965558" duration="2326000" />
     </task>
     <task id="LOCAL-00001" summary="restart for not shit design">
       <created>1677029481317</created>
@@ -118,7 +124,63 @@
       <option name="project" value="LOCAL" />
       <updated>1677029481317</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Coins and CoinPool">
+      <created>1677107202580</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1677107202580</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added Items, ItemInfo, and Inventory">
+      <created>1677107226243</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677107226243</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Changes to work with ItemInfo and coins; Formatting">
+      <created>1677107290582</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677107290582</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Formatting, password input, buying item, and change handling">
+      <created>1677115528797</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1677115528797</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Coin creation from string">
+      <created>1677200571931</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1677200571931</updated>
+    </task>
+    <task id="LOCAL-00007" summary="getID from item name and add items to inventory to begin with">
+      <created>1677200700888</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1677200700888</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Easier constructor">
+      <created>1677200775592</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1677200775592</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Updated error handling and inventory initialization">
+      <created>1677200897182</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1677200897182</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,10 +200,31 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Migrate to Maven" />
     <MESSAGE value="restart for not shit design" />
-    <option name="LAST_COMMIT_MESSAGE" value="restart for not shit design" />
+    <MESSAGE value="Added Coins and CoinPool" />
+    <MESSAGE value="Added Items, ItemInfo, and Inventory" />
+    <MESSAGE value="Changes to work with ItemInfo and coins; Formatting" />
+    <MESSAGE value="Formatting, password input, buying item, and change handling" />
+    <MESSAGE value="Coin creation from string" />
+    <MESSAGE value="getID from item name and add items to inventory to begin with" />
+    <MESSAGE value="Easier constructor" />
+    <MESSAGE value="Updated error handling and inventory initialization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated error handling and inventory initialization" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/VendingMachine$Main.ic" NAME="Main Coverage Results" MODIFIED="1677197778623" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

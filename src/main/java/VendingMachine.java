@@ -1,3 +1,6 @@
+/**
+ * Represents the actual vending machine and its components
+ */
 public class VendingMachine {
     private final Inventory inventory;
     private final CoinPool coins;
@@ -7,6 +10,10 @@ public class VendingMachine {
 
     private int numItems;
 
+    /**
+     * Creates new instance of a vending machine
+     * @param password Sets the password to enter into operator mode
+     */
     public VendingMachine(String password) {
         inventory = new Inventory();
         coins = new CoinPool();
@@ -15,6 +22,9 @@ public class VendingMachine {
         numItems = 0;
     }
 
+    /**
+     * @return String containing information about the inventory of the vending machine
+     */
     public String showInventory() {
         StringBuilder output = new StringBuilder();
         int i = 1;
@@ -34,6 +44,10 @@ public class VendingMachine {
         return output.toString();
     }
 
+
+    /**
+     * @param itemID The itemID (1 - numItems) that should be purchased
+     */
     public void buy(String itemID) {
         double itemPrice = inventory.getPrice(itemID);
 
@@ -57,10 +71,19 @@ public class VendingMachine {
         }
     }
 
-    public boolean checkPassword(String password) {
+
+    /**
+     * @param password Password input to be checked
+     * @return Boolean stating whether password is correct or not
+     */
+    private boolean checkPassword(String password) {
         return password.equals(this.password);
     }
 
+
+    /**
+     * @param password Attempts to log the user into Operator mode using password
+     */
     public void login(String password) {
         if (checkPassword(password)) {
             state = VendingMachineState.OPERATOR;
@@ -69,16 +92,36 @@ public class VendingMachine {
         }
     }
 
+    /**
+     * Exits the user from Operator mode back into Customer mode
+     */
     public void logoff() {
         state = VendingMachineState.CUSTOMER;
     }
 
+    /**
+     * Allows the user to input a coin (Quarter, Dime, Nickel, Penny)
+     * @param coin The coin to be inputted
+     */
     public void insertCoin(Coin coin) {
         inputCoinAmount += coin.getValue();
         coins.add(coin);
         System.out.printf("Inserted %s\n", coin.getName());
     }
 
+    /**
+     * Removes all coins of specified type from machine
+     * @param coin Coin type to be removed
+     */
+    public void removeCoins(Coin coin){
+        coins.remove(coin);
+        System.out.printf("Removed all %ss", coin.getName());
+    }
+
+    /**
+     * Adds new items to machine, only accessible at startup
+     * @param item Item to be added to machine's inventory
+     */
     public void addItem(ItemInfo item) {
         if (state != VendingMachineState.OPERATOR) {
             System.out.println(
@@ -90,11 +133,37 @@ public class VendingMachine {
         inventory.addItem(item, ++numItems);
     }
 
-    public boolean isValidSelection(int index) {
-        return 0 <= index && index <= inventory.getNumItems();
+    /**
+     * Increase quanitity of specified item by 1
+     * @param itemID Item to be restocked
+     */
+    public void stockItem(String itemID){
+        inventory.stockItem(itemID);
     }
 
-    public void dispenseChange(double inputCoinAmount) {
+    /**
+     * Changes the price of item to inputted value
+     * @param itemID Item to change price of
+     * @param price The new price
+     */
+    public void setPrice(String itemID, double price){
+        inventory.setPrice(itemID, price);
+    }
+
+    /**
+     * Determines whether ID of selected item is in inventory
+     * @param ID ID of item to check
+     * @return Boolean stating whether in range or not
+     */
+    public boolean isValidSelection(int ID) {
+        return 0 <= ID && ID <= inventory.getNumItems();
+    }
+
+    /**
+     * Output change for user
+     * @param inputCoinAmount Amount to pull change for
+     */
+    private void dispenseChange(double inputCoinAmount) {
         CoinAmounts change = calculateChange(inputCoinAmount);
 
         System.out.printf(
@@ -103,7 +172,12 @@ public class VendingMachine {
                 change.nickels, change.pennies);
     }
 
-    public CoinAmounts calculateChange(double amount) {
+
+    /**
+     * @param amount Calculate change for this amount of money
+     * @return CoinAmounts stating how many of each coin is needed
+     */
+    private CoinAmounts calculateChange(double amount) {
         int numQuarters = 0;
         int numDimes = 0;
         int numNickels = 0;
@@ -128,7 +202,12 @@ public class VendingMachine {
         return new CoinAmounts(numQuarters, numDimes, numNickels, numPennies);
     }
 
-    public boolean hasChange(double amount) {
+    /**
+     * Determines whether machine has enough coins for change
+     * @param amount Dollar amount to be checked for change
+     * @return Boolean stating whether the machine has change
+     */
+    private boolean hasChange(double amount) {
         CoinAmounts amounts = calculateChange(amount);
 
         return !(coins.getNumCoin(Coin.QUARTER) < amounts.quarters) &&
@@ -137,7 +216,13 @@ public class VendingMachine {
                 !(coins.getNumCoin(Coin.PENNY) < amounts.pennies);
     }
 
-
+    /**
+     * Wrapper for the number of coins in an amount
+     * @param quarters Number of quarters
+     * @param dimes Number of dimes
+     * @param nickels Number of nickels
+     * @param pennies Number of pennies
+     */
     private record CoinAmounts(int quarters, int dimes, int nickels,
                                int pennies) {
 

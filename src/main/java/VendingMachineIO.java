@@ -1,7 +1,17 @@
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+/**
+ * Serves as the primary I/O system for the vending machine.
+ * Handles verifying input and displaying output
+ */
+public class VendingMachineIO {
+
+
+    /**
+     * Reads input from standard input, verifies it, then forwards it to the
+     * vending machine proper
+     */
+    public void getInput() {
         Scanner scanner = new Scanner(System.in);
         boolean run = true;
 
@@ -72,11 +82,39 @@ public class Main {
                                             "inputs\n", lowercaseInput[1]);
                         }
                     }
-                    case "s", "show" -> {
+                    case "show" -> {
                         switch (lowercaseInput[1]) {
                             case "i", "inv", "inventory" -> System.out.println(
                                     vendingMachine.showInventory());
                             case "h", "help" -> showHelp();
+                        }
+                    }
+                    case "stock" -> {
+                        if (!vendingMachine.isValidSelection(
+                                Integer.parseInt(lowercaseInput[1]))) {
+                            System.out.println("Invalid product number");
+                        } else {
+                            vendingMachine.stockItem(lowercaseInput[1]);
+                        }
+                    }
+                    case "setprice" -> {
+                        if (splitInput.length < 3) {
+                            System.out.println("Not enough arguments");
+                        } else if (!vendingMachine.isValidSelection(
+                                Integer.parseInt(lowercaseInput[1]))) {
+                            System.out.println("Invalid product number");
+                        } else {
+                            vendingMachine.setPrice(lowercaseInput[1],
+                                    Double.parseDouble(splitInput[2]));
+                        }
+                    }
+                    case "remove" -> {
+                        try {
+                            Coin coin = Coin.fromString(lowercaseInput[1]);
+                            vendingMachine.removeCoins(coin);
+                        } catch (IllegalArgumentException e) {
+                            System.out.printf("%s is not a valid coin\n",
+                                    lowercaseInput[1]);
                         }
                     }
                     case "login" -> vendingMachine.login(splitInput[1]);
@@ -85,11 +123,14 @@ public class Main {
 
                 }
             }
-
         }
     }
 
-    private static boolean isValidInput(String input) {
+    /**
+     * @param input String to check to if valid input to vending machine
+     * @return boolean
+     */
+    private boolean isValidInput(String input) {
         String[] inputs = input.split(" ");
 
 
@@ -104,23 +145,18 @@ public class Main {
                     return false;
                 }
             }
-        } else {
+        } else if (inputs.length == 2) {
             switch (inputs[0].toLowerCase()) {
-                case "i", "insert", "b", "buy", "q", "quit", "l", "login" -> {
+                case "i", "insert", "b", "buy", "q", "quit", "l", "login",
+                        "stock", "setprice", "remove" -> {
                     return true;
                 }
-                case "s", "show" -> {
+                case "show" -> {
                     switch (inputs[1].toLowerCase()) {
                         case "inventory", "inv", "i", "help", "h" -> {
                             return true;
                         }
-                        default -> {
-                            return false;
-                        }
                     }
-                }
-                default -> {
-                    return false;
                 }
             }
         }
@@ -128,7 +164,13 @@ public class Main {
         return false;
     }
 
-    private static void showHelp() {
+
+    /**
+     * Displays information about valid commands, their syntax, and a brief
+     * description
+     */
+    //TODO
+    private void showHelp() {
         System.out.println("Show help");
     }
 }

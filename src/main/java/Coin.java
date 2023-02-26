@@ -1,3 +1,6 @@
+/**
+ * Represents each acceptable coin and defines their value and name
+ */
 public enum Coin {
     PENNY("Penny", 0.01),
     NICKEL("Nickel", 0.05),
@@ -12,14 +15,27 @@ public enum Coin {
         this.value = value;
     }
 
+    /**
+     * Returns name of coin
+     * @return String Name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Returns value of con
+     * @return double value
+     */
     public double getValue() {
         return value;
     }
 
+    /**
+     * Creates a Coin given the name of a coin
+     * @param name Inputted name to convert to a coin
+     * @return Coin
+     */
     public static Coin fromString(String name) {
         try {
             return Coin.valueOf(name);
