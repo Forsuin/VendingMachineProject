@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18e3d53a-3a1b-4c60-b2f2-cad884bdcc42" name="Changes" comment="Updated error handling and inventory initialization">
-      <change afterPath="$PROJECT_DIR$/src/main/java/VendingMachineDriver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/VendingMachineIO.java" afterDir="false" />
+    <list default="true" id="18e3d53a-3a1b-4c60-b2f2-cad884bdcc42" name="Changes" comment="Show help implemented">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CoinPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CoinPool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/VendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VendingMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VendingMachineDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VendingMachineDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VendingMachineIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VendingMachineIO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +113,10 @@
       <workItem from="1677247505905" duration="18000" />
       <workItem from="1677357712535" duration="1000" />
       <workItem from="1677361973623" duration="10000" />
-      <workItem from="1677376965558" duration="2326000" />
+      <workItem from="1677376965558" duration="3867000" />
+      <workItem from="1677429544020" duration="606000" />
+      <workItem from="1677459916896" duration="1437000" />
+      <workItem from="1677463034239" duration="1091000" />
     </task>
     <task id="LOCAL-00001" summary="restart for not shit design">
       <created>1677029481317</created>
@@ -180,7 +181,35 @@
       <option name="project" value="LOCAL" />
       <updated>1677200897182</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Nearly finished project, added documentation">
+      <created>1677380832030</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1677380832030</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Show help implemented">
+      <created>1677460640848</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1677460640848</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Show help implemented">
+      <created>1677460651852</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1677460651852</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Show help implemented">
+      <created>1677460662635</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1677460662635</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,7 +237,9 @@
     <MESSAGE value="getID from item name and add items to inventory to begin with" />
     <MESSAGE value="Easier constructor" />
     <MESSAGE value="Updated error handling and inventory initialization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated error handling and inventory initialization" />
+    <MESSAGE value="Nearly finished project, added documentation" />
+    <MESSAGE value="Show help implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Show help implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

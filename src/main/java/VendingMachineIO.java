@@ -93,7 +93,12 @@ public class VendingMachineIO {
                                 Integer.parseInt(lowercaseInput[1]))) {
                             System.out.println("Invalid product number");
                         } else {
-                            vendingMachine.stockItem(lowercaseInput[1]);
+                            if(vendingMachine.getState() == VendingMachineState.OPERATOR){
+                                vendingMachine.stockItem(lowercaseInput[1]);
+                            }
+                            else {
+                                System.out.println("Must be in operator mode to run this command");
+                            }
                         }
                     }
                     case "setprice" -> {
@@ -103,14 +108,24 @@ public class VendingMachineIO {
                                 Integer.parseInt(lowercaseInput[1]))) {
                             System.out.println("Invalid product number");
                         } else {
-                            vendingMachine.setPrice(lowercaseInput[1],
-                                    Double.parseDouble(splitInput[2]));
+                            if(vendingMachine.getState() == VendingMachineState.OPERATOR){
+                                vendingMachine.setPrice(lowercaseInput[1],
+                                        Double.parseDouble(splitInput[2]));
+                            }
+                            else {
+                                System.out.println("Must be in operator mode to run this command");
+                            }
                         }
                     }
                     case "remove" -> {
                         try {
-                            Coin coin = Coin.fromString(lowercaseInput[1]);
-                            vendingMachine.removeCoins(coin);
+                            if(vendingMachine.getState() == VendingMachineState.OPERATOR){
+                                Coin coin = Coin.fromString(lowercaseInput[1]);
+                                vendingMachine.removeCoins(coin);
+                            }
+                            else {
+                                System.out.println("Must be in operator mode to run this command");
+                            }
                         } catch (IllegalArgumentException e) {
                             System.out.printf("%s is not a valid coin\n",
                                     lowercaseInput[1]);
@@ -118,8 +133,10 @@ public class VendingMachineIO {
                     }
                     case "login" -> vendingMachine.login(splitInput[1]);
                     case "exit", "logoff" -> vendingMachine.logoff();
-                    case "q", "quit" -> run = false;
-
+                    case "q", "quit" -> {
+                        run = false;
+                        System.out.println("Quit program");
+                    }
                 }
             }
         }
@@ -147,7 +164,7 @@ public class VendingMachineIO {
         } else if (inputs.length == 2) {
             switch (inputs[0].toLowerCase()) {
                 case "i", "insert", "b", "buy", "q", "quit", "l", "login",
-                        "stock", "setprice", "remove" -> {
+                        "stock", "remove" -> {
                     return true;
                 }
                 case "show" -> {
@@ -158,6 +175,9 @@ public class VendingMachineIO {
                     }
                 }
             }
+        }
+        else if (inputs.length == 3){
+            return inputs[0].equalsIgnoreCase("setprice");
         }
         //should be unreachable, but here to make compiler happy
         return false;

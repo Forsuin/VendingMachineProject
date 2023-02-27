@@ -22,6 +22,10 @@ public class VendingMachine {
         numItems = 0;
     }
 
+    public VendingMachineState getState() {
+        return state;
+    }
+
     /**
      * @return String containing information about the inventory of the vending machine
      */
@@ -87,6 +91,7 @@ public class VendingMachine {
     public void login(String password) {
         if (checkPassword(password)) {
             state = VendingMachineState.OPERATOR;
+            System.out.println("Successfully logged in");
         } else {
             System.out.println("Incorrect password. Please try again.");
         }
@@ -97,6 +102,7 @@ public class VendingMachine {
      */
     public void logoff() {
         state = VendingMachineState.CUSTOMER;
+        System.out.println("Successfully logged out");
     }
 
     /**
@@ -148,6 +154,7 @@ public class VendingMachine {
      */
     public void setPrice(String itemID, double price){
         inventory.setPrice(itemID, price);
+        System.out.printf("Set price of %s to %.2f\n", inventory.getName(itemID), price);
     }
 
     /**
