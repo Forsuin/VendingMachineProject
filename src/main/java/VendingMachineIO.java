@@ -168,7 +168,6 @@ public class VendingMachineIO {
      * Displays information about valid commands, their syntax, and a brief
      * description
      */
-    //TODO
     private void showHelp() {
 
         String output =
