@@ -86,7 +86,6 @@ public class VendingMachineIO {
                         switch (lowercaseInput[1]) {
                             case "i", "inv", "inventory" -> System.out.println(
                                     vendingMachine.showInventory());
-                            case "h", "help" -> showHelp();
                         }
                     }
                     case "stock" -> {
@@ -153,7 +152,7 @@ public class VendingMachineIO {
                 }
                 case "show" -> {
                     switch (inputs[1].toLowerCase()) {
-                        case "inventory", "inv", "i", "help", "h" -> {
+                        case "inventory", "inv", "i" -> {
                             return true;
                         }
                     }
@@ -171,6 +170,22 @@ public class VendingMachineIO {
      */
     //TODO
     private void showHelp() {
-        System.out.println("Show help");
+
+        String output =
+                """
+                        help, h - Displays all valid inputs and arguments
+                        login [password] - Attempts to log into operator mode using the inputted password
+                        logoff - Exits out of operator mode back into user mode
+                        exit - Alias for logoff
+                        insert/i [coin type] - Inserts a single coin of inputted type into the machine. Valid types are quarters(q), dimes(d), nickels(n), and pennies(p)
+                        buy/b [item number] - Attempts to buy the specified item
+                        quit - Exits the program
+                        show inventory/inv/i - Shows the inventory of the vending machine
+                        stock [item number] - Adds one item to the machine's inventory
+                        setprice [item number] [price] - Set's the price of item to inputted value
+                        remove [coin type] - Removes all coins of inputted type from machine
+                        """;
+
+        System.out.println(output);
     }
 }
